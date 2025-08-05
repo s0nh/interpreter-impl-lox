@@ -18,6 +18,11 @@ public class GenerateAst {
             "Literal    : Object value",
             "Unary      : Token operator, Expr right"
         ));
+
+        defineAst(outputDir, "Stmt", Arrays.asList(
+            "Expression : Expr expression",
+            "Print           : Expr expression"
+        ));
     }
 
     private static void defineAst(
@@ -43,7 +48,7 @@ public class GenerateAst {
 
             // 베이스 accept() 메서드
             writer.println();
-            writer.println("    abstract <R> R accept(Visitor<R>) visitor);");
+            writer.println("    abstract <R> R accept(Visitor<R> visitor);");
 
             writer.println("}");
             writer.close();
@@ -55,11 +60,11 @@ public class GenerateAst {
 
             for (String type : types) {
                 String typeName = type.split(":")[0].trim();
-                writer.println("    R visit" + typeName + baseName + "(" +
+                writer.println("        R visit" + typeName + baseName + "(" +
                 typeName + " " + baseName.toLowerCase() + ");");
             }
 
-        writer.println("   }");
+        writer.println("    }");
         }
 
     private static void defineType(
@@ -69,29 +74,29 @@ public class GenerateAst {
             baseName + " {");
 
             // 생성자
-            writer.println("    " + className + "(" + fieldList + ") {");
+            writer.println("        " + className + "(" + fieldList + ") {");
 
             // 매개변수를 필드에 저장한다.
             String[] fields = fieldList.split(", ");
             for (String field : fields) { 
                 String name = field.split(" ")[1];
-                writer.println("    this." + name + " = " + name + ";");
+                writer.println("            this." + name + " = " + name + ";");
             }
 
-            writer.println("    }");
+            writer.println("        }");
 
             // 비지터 패턴
             writer.println();
-            writer.println("    @Override");
-            writer.println("    <R> R accept(Visitor<R> visitor) {");
-            writer.println("        return visitor.visit" +
+            writer.println("        @Override");
+            writer.println("        <R> R accept(Visitor<R> visitor) {");
+            writer.println("            return visitor.visit" +
                 className + baseName + "(this);");
-            writer.println("    }");
+            writer.println("        }");
 
             // 필드
             writer.println();
             for(String field : fields) {
-                writer.println("    final " + field + ";");
+                writer.println("        final " + field + ";");
             }
 
             writer.println("    }");

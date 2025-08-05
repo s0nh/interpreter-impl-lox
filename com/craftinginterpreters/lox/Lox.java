@@ -49,12 +49,12 @@ public class Lox {
         Scanner scanner = new Scanner(source);
         List<Token> tokens = scanner.scanTokens();
         Parser parser = new Parser(tokens);
-        Expr expression = parser.parse();
+        List<Stmt> statements = parser.parse();
 
         // 구문 에러 발생 시 멈춘다
         if (hadError) return;
 
-        interpreter.interpret(expression);
+        interpreter.interpret(statements);
         // System.out.println(new AstPrinter().print(expression));
         /*
         // 지금은 그냥 토큰을 출력한다.
