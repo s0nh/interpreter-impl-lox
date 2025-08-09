@@ -87,10 +87,10 @@ public class Scanner {
                 addToken(match('=') ? EQUAL_EQUAL : EQUAL);
                 break;
             case '>':
-                addToken(match('=') ? LESS_EQUAL : LESS);
+                addToken(match('=') ? GREATER_EQUAL : GREATER);
                 break;
             case '<':
-                addToken(match('=') ? GREATER_EQUAL : GREATER);
+                addToken(match('=') ? LESS_EQUAL : LESS);
                 break;
             case '/':
             if (match('/')) {
