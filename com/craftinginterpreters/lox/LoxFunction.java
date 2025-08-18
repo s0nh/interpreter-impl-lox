@@ -15,6 +15,7 @@ class LoxFunction implements LoxCallable {
         this.declaration = declaration;
     }
 
+    // 인스턴스의 메소드가 호출 될 때, 호출.
     LoxFunction bind(LoxInstance instance) {
         Environment environment = new Environment(closure);
         environment.define("this", instance);
