@@ -1,11 +1,11 @@
 # Lox Interpreter 구현
 
 
-crafting interpreters 책을 참고해 인터프리터를 직접 작성해보는 개인 공부 프로젝트입니다.
+Crafting interpreters 책을 참고해 인터프리터를 직접 작성해보는 개인 공부 프로젝트입니다.
 
 
 
-총 두가지의 인터프리터를 작성했고 두 개의 인터프리터는 다른 구조로 작성되었습니다.
+총 두 가지의 인터프리터를 작성했고 두 개의 인터프리터는 다른 구조로 작성되었습니다.
 * JLOX | Parser -> AST -> Resolver(정적분석 용도) -> Interpreter (Visitor Pattern)
 * CLOX | Compiler -> ByteCode -> Virtual Machine (VM 방식)
 
